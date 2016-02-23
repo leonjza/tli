@@ -37,7 +37,7 @@ def banner():
 
 
 @click.group()
-@click.version_option('1.0')
+@click.version_option('2.0')
 @click.option('--language-filter', '-l', default=None, metavar="COMMA SEPERATED",
               help='Filter tweets to specific languages. Accepts a comma seperated list.')
 @click.option('--verbose', '-v', is_flag=True, default=False, help='Enable verbosity.')
