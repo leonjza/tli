@@ -36,5 +36,9 @@ $ tli timeline
 [*] Make sure you have setup an app at https://apps.twitter.com/ first!
 ```
 
+## examples
+`tli timeline` - Stream the users timeline  
+`tli watch -t security,exploit` - Stream tweets with specific words
+
 ## contact
 [https://twitter.com/leonjza](https://twitter.com/leonjza)
