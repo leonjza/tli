@@ -6,7 +6,7 @@ setup(
     author='Leon Jacobs',
     author_email='leonja511@gmail.com',
     url='https://github.com/leonjza/tli',
-    download_url='https://github.com/leonjza/tli/tarball/1.0',
+    download_url='https://github.com/leonjza/tli/tarball/2.0',
     keywords=['twitter', 'line', 'console', 'command', 'client'],
     version='2.0',
     packages=['tli', 'tli.util'],
