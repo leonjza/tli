@@ -109,6 +109,7 @@ def setupconfig():
 
     click.echo('[*] Writing configuration to: {path}'.format(path=confighome))
 
+    os.umask(0077)
     with open(confighome, 'w') as f:
         config.write(f)
 
