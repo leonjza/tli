@@ -37,7 +37,7 @@ def banner():
 
 
 @click.group()
-@click.version_option('2.1')
+@click.version_option('2.2')
 @click.option('--language-filter', '-l', default=None, metavar="COMMA SEPERATED",
               help='Filter tweets to specific languages. Accepts a comma seperated list.')
 @click.option('--verbose', '-v', is_flag=True, default=False, help='Enable verbosity.')
@@ -93,7 +93,7 @@ def timeline(twitter):
 def watch(twitter, topics):
     """
         \b
-        Watch Spefic Topics
+        Watch Specific Topics
 
     """
     topics = topics.split(',')

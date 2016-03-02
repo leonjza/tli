@@ -8,7 +8,7 @@ setup(
     url='https://github.com/leonjza/tli',
     download_url='https://github.com/leonjza/tli/tarball/2.1',
     keywords=['twitter', 'line', 'console', 'command', 'client'],
-    version='2.1',
+    version='2.2',
     packages=['tli', 'tli.util'],
     include_package_data=True,
     install_requires=[
