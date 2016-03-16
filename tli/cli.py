@@ -37,7 +37,7 @@ def banner():
 
 
 @click.group()
-@click.version_option('2.2')
+@click.version_option('2.3')
 @click.option('--language-filter', '-l', default=None, metavar="COMMA SEPERATED",
               help='Filter tweets to specific languages. Accepts a comma seperated list.')
 @click.option('--no-retweets', is_flag=True, default=False, help='Do not show retweets.')
