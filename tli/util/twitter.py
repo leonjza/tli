@@ -31,13 +31,14 @@ class Twitter(object):
     """
 
     def __init__(self, verbose=False, language_filter=None, consumer_key=None, consumer_secret=None, access_token=None,
-                 access_token_secret=None):
+                 no_retweets=False, access_token_secret=None):
         self.auth = None
         self.api = None
         self.stream = None
 
         self.verbose = verbose
         self.language_filter = language_filter
+        self.no_retweets = no_retweets
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
         self.access_token = access_token
@@ -57,7 +58,7 @@ class Twitter(object):
         click.secho('[v] Twitter Stream Setup', fg='yellow', dim=True) if self.verbose else None
         self.stream = tweepy.Stream(
             auth=self.api.auth, listener=StreamListener(
-                api=self.api, language_filter=self.language_filter, verbose=self.verbose))
+                api=self.api, language_filter=self.language_filter, no_retweets=self.no_retweets, verbose=self.verbose))
 
         click.secho('[v] Done Stream Setup', fg='yellow', dim=True) if self.verbose else None
 
@@ -69,9 +70,10 @@ class StreamListener(tweepy.StreamListener):
         to the screen
     """
 
-    def __init__(self, api=None, language_filter=None, verbose=False):
+    def __init__(self, api=None, language_filter=None, no_retweets=False, verbose=False):
         self.api = api or tweepy.API()
         self.language_filter = language_filter
+        self.no_retweets = no_retweets
         self.verbose = verbose
 
     def on_status(self, status):
@@ -91,7 +93,7 @@ class StreamListener(tweepy.StreamListener):
 
         click.echo('\n')
 
-        if hasattr(status, 'retweeted_status'):
+        if hasattr(status, 'retweeted_status') and not self.no_retweets:
             self._print_status(status, is_retweet=True)
         else:
             self._print_status(status)

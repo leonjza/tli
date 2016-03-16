@@ -40,9 +40,10 @@ def banner():
 @click.version_option('2.2')
 @click.option('--language-filter', '-l', default=None, metavar="COMMA SEPERATED",
               help='Filter tweets to specific languages. Accepts a comma seperated list.')
+@click.option('--no-retweets', is_flag=True, default=False, help='Do not show retweets.')
 @click.option('--verbose', '-v', is_flag=True, default=False, help='Enable verbosity.')
 @click.pass_context
-def cli(ctx, language_filter, verbose):
+def cli(ctx, no_retweets, language_filter, verbose):
     """
         \b
          _______  ___      ___
@@ -64,13 +65,18 @@ def cli(ctx, language_filter, verbose):
         click.secho('[v] Configurating Language Filter', fg='yellow', dim=True) if verbose else None
         language_filter = language_filter.split(',')
 
+    if verbose and no_retweets:
+        click.secho('[v] Filtering out re-tweets.', fg='yellow')
+
     ctx.obj = Twitter(verbose=verbose,
+                      no_retweets=no_retweets,
                       language_filter=language_filter,
                       consumer_key=consumer_key,
                       consumer_secret=consumer_secret,
                       access_token=access_token,
                       access_token_secret=access_token_secret)
     ctx.verbose = verbose
+    # ctx.no_retweets = no_retweets
 
 
 @cli.command()
